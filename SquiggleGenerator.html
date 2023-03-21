@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>Squiggle Generator</title>
+    <style>
+      body {
+        background-color: white;
+        color: black;
+      }
+
+      .dark-mode {
+        background-color: #1a1a1a;
+        color: white;
+      }
+      
+      .dark-mode input[type=text] {
+        background-color: #777;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <form>
@@ -19,6 +35,7 @@
       <input type="number" id="space_length" name="space_length" value="2" min="1" max="5"><br><br>
       
       <input type="button" value="Generate Squiggle" onclick="generateSquiggle()">
+      <button type="button" onclick="toggleDarkMode()">Dark Mode</button>
     </form>
     
     <div id="squiggle"></div>
@@ -55,6 +72,39 @@
           alert("Please enter valid input.");
         }
       }
+
+function toggleDarkMode() {
+  const body = document.body;
+  const textInput = document.getElementById("text");
+  const lengthLabel = document.querySelector("label[for=length]");
+  const repeatLabel = document.querySelector("label[for=repeat]");
+  const spaceLengthLabel = document.querySelector("label[for=space_length]");
+  const inputFields = document.querySelectorAll("input[type=text], input[type=number]");
+  body.classList.toggle("dark-mode");
+  if (body.classList.contains("dark-mode")) {
+    document.querySelector("button").textContent = "Light Mode";
+    textInput.style.backgroundColor = "#777";
+    textInput.style.color = "white";
+    lengthLabel.style.color = "white";
+    repeatLabel.style.color = "white";
+    spaceLengthLabel.style.color = "white";
+    inputFields.forEach((field) => {
+      field.style.backgroundColor = "#777";
+      field.style.color = "white";
+    });
+  } else {
+    document.querySelector("button").textContent = "Dark Mode";
+    textInput.style.backgroundColor = "white";
+    textInput.style.color = "black";
+    lengthLabel.style.color = "black";
+    repeatLabel.style.color = "black";
+    spaceLengthLabel.style.color = "black";
+    inputFields.forEach((field) => {
+      field.style.backgroundColor = "white";
+      field.style.color = "black";
+    });
+  }
+}
     </script>
   </body>
 </html>
